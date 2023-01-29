@@ -10,15 +10,38 @@ export default app;
 
 app.get('/products', async (req: Request, res: Response) => {
     console.log('/products (GET)')
-    const { category_id } = req.query;
+    const { product_category, product_id, owner_id } = req.query;
 
-    const query = {
-        text:
-            `
-        SELECT * FROM product ${category_id === undefined ? "" : `WHERE category_id = ${category_id}`}
-        `,
+    let productCategoryCondition = '';
+    if (Array.isArray(product_category)) {
+        productCategoryCondition = `product_category IN (${product_category.join(", ")})`
+    } else {
+        productCategoryCondition = `${product_category === undefined ? "" : `product_category = ${product_category}`}`
     }
 
+    let productIdCondition = '';
+    if (Array.isArray(product_id)) {
+        productIdCondition = `product_id IN (${product_id.join(", ")})`
+    } else {
+        productIdCondition = `${product_id === undefined ? "" : `product_id = ${product_id}`}`
+    }
+
+    let ownerIdCondition = '';
+    if (Array.isArray(owner_id)) {
+        ownerIdCondition = `owner_id IN (${owner_id.join(", ")})`
+    } else {
+        ownerIdCondition
+            = `${owner_id === undefined ? "" : `owner_id = ${owner_id}`}`
+    }
+
+    const conditionString = [productCategoryCondition, productIdCondition, ownerIdCondition].filter(i => i !== '')
+    const query = {
+        text: `SELECT * FROM product 
+        ${conditionString.length ? 'WHERE' : ''} 
+        ${conditionString.join(" AND ")}
+        `,
+    }
+    console.log(query.text)
     rawDatabasePool.query(query, (err, result) => {
         const products = [];
 

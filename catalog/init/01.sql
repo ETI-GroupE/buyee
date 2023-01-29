@@ -11,6 +11,7 @@ CREATE TABLE category (
 
 CREATE TABLE product (
     product_id SERIAL,
+    owner_id int, -- FK for user service
     product_name varchar,
     product_description varchar,
     product_price float,

@@ -9,7 +9,7 @@ const app = express();
 export default app;
 
 app.delete('/product/:id', async (req: Request, res: Response) => {
-    console.log('/product (DELETE)')
+    console.log('/product/:id (DELETE)')
     const product_id = req.params.id
 
     const query = {
