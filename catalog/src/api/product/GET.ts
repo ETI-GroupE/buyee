@@ -10,7 +10,7 @@ export default app;
 
 app.get('/products', async (req: Request, res: Response) => {
     console.log('/products (GET)')
-    const { product_category, product_id, owner_id } = req.query;
+    const { product_category, product_id, owner_id, product_name } = req.query;
 
     let productCategoryCondition = '';
     if (Array.isArray(product_category)) {
@@ -34,7 +34,18 @@ app.get('/products', async (req: Request, res: Response) => {
             = `${owner_id === undefined ? "" : `owner_id = ${owner_id}`}`
     }
 
-    const conditionString = [productCategoryCondition, productIdCondition, ownerIdCondition].filter(i => i !== '')
+    let productNameCondition = '';
+    if (Array.isArray(product_name)) {
+        product_name.forEach((pn, index) => {
+            product_name[index] = `'${pn}'`
+        });
+        productNameCondition = `product_name IN (${product_name.join(", ")})`
+    } else {
+        productNameCondition
+            = `${product_name === undefined ? "" : `product_name = '${product_name}'`}`
+    }
+
+    const conditionString = [productCategoryCondition, productIdCondition, ownerIdCondition, productNameCondition].filter(i => i !== '')
     const query = {
         text: `SELECT * FROM product 
         ${conditionString.length ? 'WHERE' : ''} 
