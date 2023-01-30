@@ -37,12 +37,12 @@ app.get('/products', async (req: Request, res: Response) => {
     let productNameCondition = '';
     if (Array.isArray(product_name)) {
         product_name.forEach((pn, index) => {
-            product_name[index] = `'${pn}'`
+            product_name[index] = `'%${pn}%'`
         });
-        productNameCondition = `product_name IN (${product_name.join(", ")})`
+        productNameCondition = `product_name ILIKE ANY (array[${product_name.join(", ")}])`
     } else {
         productNameCondition
-            = `${product_name === undefined ? "" : `product_name = '${product_name}'`}`
+            = `${product_name === undefined ? "" : `product_name ILIKE '%${product_name}%'`}`
     }
 
     const conditionString = [productCategoryCondition, productIdCondition, ownerIdCondition, productNameCondition].filter(i => i !== '')
