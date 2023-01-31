@@ -22,7 +22,7 @@ export async function upsert(req: Request, res: Response) {
     const query = {
         text:
             `
-        INSERT INTO product(product_name, owner_id, product_description, product_price, product_category, product_ship_location, product_stock) VALUES ($1, $2, $3, $4, $5, $6)
+        INSERT INTO product(product_name, owner_id, product_description, product_price, product_category_id, product_ship_location, product_original_stock, product_stock) VALUES ($1, $2, $3, $4, $5, $6, $6)
 
         `,
         values: [product_name, owner_id, product_description, product_price, product_category, product_ship_location, product_stock],

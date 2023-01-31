@@ -18,6 +18,7 @@ CREATE TABLE product (
     product_category_id int REFERENCES category(category_id),
     product_ship_location varchar,
     product_original_stock int,
+    product_status varchar CHECK(product_status IN ('ACTIVE', 'INACTIVE')) DEFAULT 'ACTIVE',
     product_stock int,
     PRIMARY KEY(product_id)
 );

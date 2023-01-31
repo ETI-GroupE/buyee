@@ -10,14 +10,12 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use(cookieParser());
 
-import productAPI from "./api/product";
-import categoryAPI from "./api/category";
+import productAPI from "./api/feedback";
 app.use("/api/v1",
     productAPI,
-    categoryAPI,
 )
 
-const API_PORT: number = parseInt(process.env.API_PORT) || 5010
+const API_PORT: number = parseInt(process.env.API_PORT) || 5011
 app.listen(API_PORT, async () => {
     console.log('API running on port', API_PORT)
 });
