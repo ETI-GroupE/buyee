@@ -15,8 +15,9 @@ CREATE TABLE product (
     product_name varchar,
     product_description varchar,
     product_price float,
-    product_category int REFERENCES category(category_id),
+    product_category_id int REFERENCES category(category_id),
     product_ship_location varchar,
+    product_original_stock int,
     product_stock int,
     PRIMARY KEY(product_id)
 );

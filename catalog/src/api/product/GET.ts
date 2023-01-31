@@ -10,7 +10,7 @@ export default app;
 
 app.get('/products', async (req: Request, res: Response) => {
     console.log('/products (GET)')
-    const { product_category, product_id, owner_id, product_name } = req.query;
+    const { product_category, product_id, owner_id, product_name, limit, offset } = req.query;
 
     let productCategoryCondition = '';
     if (Array.isArray(product_category)) {
@@ -47,9 +47,14 @@ app.get('/products', async (req: Request, res: Response) => {
 
     const conditionString = [productCategoryCondition, productIdCondition, ownerIdCondition, productNameCondition].filter(i => i !== '')
     const query = {
-        text: `SELECT * FROM product 
+        text: `SELECT * FROM product
+        INNER JOIN
+        category ON product.product_category = category.category_id
         ${conditionString.length ? 'WHERE' : ''} 
         ${conditionString.join(" AND ")}
+        ORDER BY product_id ASC
+        LIMIT ${limit ? limit : 10}
+        OFFSET ${offset ? offset : 0};
         `,
     }
     console.log(query.text)
