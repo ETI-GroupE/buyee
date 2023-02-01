@@ -36,7 +36,7 @@ app.get('/feedbacks', async (req: Request, res: Response) => {
         `,
     }
     rawDatabasePool.query(query, (err, result) => {
-        const products = [];
+        const feedback = [];
         console.log(err)
         if (err) {
             res.status(400);
@@ -44,18 +44,18 @@ app.get('/feedbacks', async (req: Request, res: Response) => {
             res.status(200);
             result.rows.forEach(row => {
                 const date = new Date(row.created_at_date)
-                row.created_at_date = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+                row.created_at_date = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
             });
-            products.push(...result.rows)
+            feedback.push(...result.rows)
         }
 
-        res.send(products)
+        res.send(feedback)
     })
 
 })
 
 app.get('/feedbacks/length', async (req: Request, res: Response) => {
-    console.log('/feedbacks (GET)')
+    console.log('/feedbacks/length (GET)')
     const { product_id, user_id } = req.query;
 
     let productIdCondition = '';
@@ -77,20 +77,20 @@ app.get('/feedbacks/length', async (req: Request, res: Response) => {
         text: `
         SELECT COUNT(*) FROM feedback
         ${conditionString.length ? 'WHERE' : ''} 
-        ${conditionString.join(" AND ")}
+        ${conditionString.join(" AND ")};
         `,
     }
     rawDatabasePool.query(query, (err, result) => {
-        const products = {};
+        const feedback = {};
         console.log(err)
         if (err) {
             res.status(400);
         } else {
             res.status(200);
-            products["count"] = result.rows[0].count
+            feedback["count"] = result.rows[0].count
         }
 
-        res.send(products)
+        res.send(feedback)
     })
 
 })
