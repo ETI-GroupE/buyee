@@ -1,52 +1,40 @@
-// import express from 'express';
-// import { Response, Request } from "express";
-// import { upsert } from "./POST";
+import { Pool, PoolClient } from "pg";
+import express from "express";
+import { Response, Request } from "express";
+import bodyParser from "body-parser";
+import { rawDatabasePool } from "../../db";
+import { upsert } from "./POST";
 
-// const app = express();
-// export default app;
+const app = express();
+export default app;
 
-// /**
-//  * @openapi
-//  * /upsertLecturerModuleAllocation:
-//  *   put:
-//  *     tags:
-//  *       - LecturerModuleAllocation
-//  *     description: Upsert lecturer module allocation
-//  *     requestBody:
-//  *       description: The lecturer_module_allocation to edit.
-//  *       content:
-//  *         application/json:
-//  *           schema:
-//  *             type: object
-//  *             required:
-//  *               - lecturer_id
-//  *               - module_id
-//  *               - semester
-//  *               - is_module_leader
-//  *               - no_class
-//  *             properties:
-//  *               lecturer_id:
-//  *                 example: 1
-//  *                 type: integer
-//  *               module_id:
-//  *                 example: 1
-//  *                 type: integer
-//  *               semester:
-//  *                 example: 2022-2
-//  *                 type: string
-//  *               is_module_leader:
-//  *                 example: false
-//  *                 type: boolean
-//  *               no_class:
-//  *                 example: 1
-//  *                 type: integer
-//  *     responses:
-//  *       200:
-//  *         description: Result is returned.
-//  *       400:
-//  *         description: Error occured.
-// */
-// app.put('/upsertLecturerModuleAllocation', async (req: Request, res: Response) => {
-//     console.log('/upsertLecturerModuleAllocation (PUT)')
-//     upsert(req, res)
-// })
+app.put("/product/:id", async (req: Request, res: Response) => {
+    console.log("/product/:id (PUT)");
+    const product_id = req.params.id;
+
+    const { product_name, product_description, product_price, product_category_id, product_ship_location, OG_product_original_stock, product_original_stock } = req.body;
+
+    if ([product_name, product_description, product_price, product_category_id, product_ship_location, OG_product_original_stock, product_original_stock].includes(undefined)) {
+        res.status(400);
+        res.send();
+        return;
+    }
+
+    rawDatabasePool.query(
+        `
+        UPDATE product
+        SET product_name = ?, product_description = ?, product_price = ?, product_category_id = ?, product_ship_location = ?, product_original_stock = product_original_stock - ?, product_stock = product_stock - ? 
+        WHERE product_id = ?;
+        `,
+        [product_name, product_description, product_price, product_category_id, product_ship_location, OG_product_original_stock - product_original_stock, OG_product_original_stock - product_original_stock, product_id],
+        (err, result) => {
+            console.log(err)
+            if (err) {
+                res.status(400);
+            } else {
+                res.status(200);
+            }
+
+            res.send();
+        });
+});

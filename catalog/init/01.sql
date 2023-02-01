@@ -1,26 +1,25 @@
---Drop Tables
+-- Drop Tables
 DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS product;
 
---Create Tables
+-- Create Tables
 CREATE TABLE category (
-    category_id SERIAL,
-    category_name varchar,
+    category_id int auto_increment,
+    category_name text,
     PRIMARY KEY(category_id)
 );
 
 CREATE TABLE product (
-    product_id SERIAL,
+    product_id int auto_increment,
     owner_id int, -- FK for user service
-    product_name varchar,
-    product_description varchar,
+    product_name text,
+    product_description text,
     product_price float,
     product_category_id int REFERENCES category(category_id),
-    product_ship_location varchar,
+    product_ship_location text,
     product_original_stock int,
-    product_status varchar CHECK(product_status IN ('ACTIVE', 'INACTIVE')) DEFAULT 'ACTIVE',
+    product_status enum ('ACTIVE', 'INACTIVE') DEFAULT 'ACTIVE',
     product_stock int,
     PRIMARY KEY(product_id)
 );
-
 

@@ -8,7 +8,7 @@ import { upsert } from "./POST";
 const app = express();
 export default app;
 
-app.patch("/product/:id", async (req: Request, res: Response) => {
+app.patch("/product/status/:id", async (req: Request, res: Response) => {
     console.log("/product/:id (PATCH)");
     const product_id = req.params.id;
 
@@ -20,21 +20,20 @@ app.patch("/product/:id", async (req: Request, res: Response) => {
         return;
     }
 
-    const query = {
-        text: `
+    rawDatabasePool.query(
+        `
         UPDATE product
-        SET product_status = $1
-        WHERE product_id = $2;
+        SET product_status = ?
+        WHERE product_id = ?;
         `,
-        values: [product_status, product_id],
-    };
-    await rawDatabasePool.query(query, (err, result) => {
-        if (err) {
-            res.status(400);
-        } else {
-            res.status(200);
-        }
+        [product_status, product_id],
+        (err, result) => {
+            if (err) {
+                res.status(400);
+            } else {
+                res.status(200);
+            }
 
-        res.send();
-    });
+            res.send();
+        });
 });

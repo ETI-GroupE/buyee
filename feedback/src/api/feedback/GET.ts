@@ -25,32 +25,35 @@ app.get('/feedbacks', async (req: Request, res: Response) => {
     }
 
     const conditionString = [productIdCondition, userIdCondition].filter(i => i !== '')
-    const query = {
-        text: `
+
+    rawDatabasePool.query(
+        `
         SELECT * FROM feedback
         ${conditionString.length ? 'WHERE' : ''} 
         ${conditionString.join(" AND ")}
-        ORDER BY feedback_id DESC
+        ORDER BY created_at_date DESC
         LIMIT ${limit ? limit : 10}
         OFFSET ${offset ? offset : 0};
         `,
-    }
-    rawDatabasePool.query(query, (err, result) => {
-        const feedback = [];
-        console.log(err)
-        if (err) {
-            res.status(400);
-        } else {
-            res.status(200);
-            result.rows.forEach(row => {
-                const date = new Date(row.created_at_date)
-                row.created_at_date = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-            });
-            feedback.push(...result.rows)
-        }
+        (err, result) => {
+            const feedback = [];
+            console.log(err, result)
+            if (err) {
+                res.status(400);
+            } else {
+                res.status(200);
 
-        res.send(feedback)
-    })
+                // @ts-ignore
+                result.forEach(row => {
+                    const date = new Date(row.created_at_date)
+                    row.created_at_date = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+                });
+                // @ts-ignore
+                feedback.push(...result)
+            }
+
+            res.send(feedback)
+        })
 
 })
 
@@ -73,24 +76,25 @@ app.get('/feedbacks/length', async (req: Request, res: Response) => {
     }
 
     const conditionString = [productIdCondition, userIdCondition].filter(i => i !== '')
-    const query = {
-        text: `
-        SELECT COUNT(*) FROM feedback
-        ${conditionString.length ? 'WHERE' : ''} 
+
+    rawDatabasePool.query(
+        `
+        SELECT COUNT(*) as count FROM feedback
+        ${conditionString.length ? 'WHERE' : ''}
         ${conditionString.join(" AND ")};
         `,
-    }
-    rawDatabasePool.query(query, (err, result) => {
-        const feedback = {};
-        console.log(err)
-        if (err) {
-            res.status(400);
-        } else {
-            res.status(200);
-            feedback["count"] = result.rows[0].count
-        }
+        (err, result) => {
+            const feedback = {};
+            if (err) {
+                res.status(400);
+            } else {
+                res.status(200);
 
-        res.send(feedback)
-    })
+                // @ts-ignore
+                feedback["count"] = result[0].count
+            }
+
+            res.send(feedback)
+        })
 
 })

@@ -51,8 +51,9 @@ app.get('/products', async (req: Request, res: Response) => {
     }
 
     const conditionString = [productCategoryCondition, productIdCondition, ownerIdCondition, productNameCondition, productStatusCondition].filter(i => i !== '')
-    const query = {
-        text: `SELECT * FROM product
+
+    rawDatabasePool.query(
+        `SELECT * FROM product
         INNER JOIN
         category ON product.product_category_id = category.category_id
         ${conditionString.length ? 'WHERE' : ''} 
@@ -61,19 +62,20 @@ app.get('/products', async (req: Request, res: Response) => {
         LIMIT ${limit ? limit : 10}
         OFFSET ${offset ? offset : 0};
         `,
-    }
-    rawDatabasePool.query(query, (err, result) => {
-        const products = [];
-        console.log(err)
-        if (err) {
-            res.status(400);
-        } else {
-            res.status(200);
-            products.push(...result.rows)
-        }
+        (err, result) => {
+            const products = [];
+            console.log(err)
+            if (err) {
+                res.status(400);
+            } else {
+                res.status(200);
 
-        res.send(products)
-    })
+                // @ts-ignore
+                products.push(...result)
+            }
+
+            res.send(products)
+        })
 
 })
 
@@ -120,25 +122,27 @@ app.get('/products/length', async (req: Request, res: Response) => {
     }
 
     const conditionString = [productCategoryCondition, productIdCondition, ownerIdCondition, productNameCondition, productStatusCondition].filter(i => i !== '')
-    const query = {
-        text: `SELECT COUNT(*) FROM product
+
+    rawDatabasePool.query(
+        `SELECT COUNT(*) as count FROM product
         INNER JOIN
         category ON product.product_category_id = category.category_id
         ${conditionString.length ? 'WHERE' : ''} 
         ${conditionString.join(" AND ")};
         `,
-    }
-    rawDatabasePool.query(query, (err, result) => {
-        const products = {};
-        console.log(err)
-        if (err) {
-            res.status(400);
-        } else {
-            res.status(200);
-            products["count"] = result.rows[0].count
-        }
+        (err, result) => {
+            const products = {};
+            console.log(err)
+            if (err) {
+                res.status(400);
+            } else {
+                res.status(200);
 
-        res.send(products)
-    })
+                // @ts-ignore
+                products["count"] = result[0].count
+            }
+
+            res.send(products)
+        })
 
 })
