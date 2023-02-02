@@ -39,14 +39,21 @@ export async function upsert(req: Request, res: Response) {
 app.post('/product/product_stock/decrement/:id', async (req: Request, res: Response) => {
     console.log('/product/product_stock/decrement/:id (POST)')
     const product_id = req.params.id
+    const { by } = req.query;
+
+    if ([by].includes(undefined)) {
+        res.status(400);
+        res.send();
+        return;
+    }
 
     rawDatabasePool.query(
         `
         UPDATE product
-        SET product_stock = product_stock - 1
-        WHERE product_id = ? AND product_stock >= 1;
+        SET product_stock = product_stock - ?
+        WHERE product_id = ? AND product_stock - ? >= 0;
         `,
-        [product_id],
+        [by, product_id, by],
         (err, result) => {
             console.log(err)
             // @ts-ignore
