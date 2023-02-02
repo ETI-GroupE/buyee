@@ -26,4 +26,4 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v0'
 
     - name: 'Use gcloud CLI'
-      run: 'gsutil -m rsync -R -d gs://buyee'
+      run: 'gsutil -m rsync -R -d . gs://buyee'
