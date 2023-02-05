@@ -32,7 +32,7 @@ $("#submitBtn").click(async function (event) {
 });
 
 $("#login").click(function () {
-	window.location.href = "/login.html";
+	window.location.href = "/auth/login.html";
 	return false;
 });
 
