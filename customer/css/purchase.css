@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html {
+    height: 100%;
+}
+
+.Status-bar{
+    border-style: inset;
+    border-width: 5px; 
+    margin: auto; 
+    width: auto;
+    min-height: auto;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.outer-box{
+    position: relative;
+    border-style: groove;
+    border-width: 5px;
+    padding: 10px;
+    margin: auto;
+    padding-bottom: 10px;
+    width: 600px;
+    height: auto;
+}
+
+.other-btn{
+    background-color: #f0f0f5;
+    color: #000000;
+    
+    margin-left: 10px;
+}
+
+.order-id{
+    width: 100%;
+}
+
+.item-quantity{
+    position: absolute;
+    bottom: 115;
+    right: 10;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.product-status{
+    position: absolute;
+    bottom: 235;
+    right: 10;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.final_price{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
