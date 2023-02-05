@@ -56,7 +56,9 @@ const fetchProducts = () => {
                         } sold
                         </span>
                     </div>
-                    <div class="productPrice">$${product.product_price}</div>
+                    <div class="productPrice">$${product.product_price.toFixed(
+                        2
+                    )}</div>
                     <div class="productStock">${
                         product.product_stock
                     } pieces left</div>
