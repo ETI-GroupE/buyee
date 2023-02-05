@@ -1,10 +1,17 @@
 const fetchProducts = () => {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const { product_name } = Object.fromEntries(urlSearchParams.entries());
+    const userId = sessionStorage.getItem("userId");
+    const jwt = sessionStorage.getItem("jwt");
+    const email = sessionStorage.getItem("email");
+    const roles = sessionStorage.getItem("roles");
+
+    if ([userId, jwt, email, roles].includes(null)) {
+        window.location.href = "/auth/login.html";
+    }
+
     axios
         .get("https://buyee-catalog-ksbujg5hza-as.a.run.app/api/v1/products", {
             params: {
-                product_name: product_name,
+                owner_id: userId,
             },
         })
         .then(async (response) => {
@@ -43,7 +50,7 @@ const fetchProducts = () => {
                 }
 
                 productHTML += `
-                <a href="/customer/product.html?product_id=${
+                <a href="/business/product.html?product_id=${
                     product.product_id
                 }" class="product d-flex p-2 bd-highlight m-1 pb-3 special-width align-items-start align-self-stretch flex-column border border-light-subtle rounded-1" id="product-${
                     product.product_id
