@@ -24,7 +24,7 @@ const fetchProduct = () => {
             const productDescription =
                 document.getElementById("productDescription");
 
-            productImage.style.backgroundImage = `url('/customer/assets/${product.product_id}.jfif')`;
+            productImage.style.backgroundImage = `url('${product.product_image_url}')`;
             productName.innerText = product.product_name;
             productCategory.innerText = `| ${product.category_name}`;
             productShip.innerText = product.product_ship_location;

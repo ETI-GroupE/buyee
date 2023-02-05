@@ -18,9 +18,9 @@ const fetchProducts = () => {
                 }" class="product d-flex p-2 bd-highlight m-1 pb-3 special-width align-items-start align-self-stretch flex-column border border-light-subtle rounded-1" id="product-${
                     product.product_id
                 }">
-                    <div class="productImage p-3" style="background-image: url('/customer/assets/${
-                        product.product_id
-                    }.jfif');"></div>
+                    <div class="productImage p-3" style="background-image: url('${
+                        product.product_image_url
+                    }');"></div>
                     <div>
                         <span class="productName">${product.product_name}</span>
                         <span class="productCategory">| ${
