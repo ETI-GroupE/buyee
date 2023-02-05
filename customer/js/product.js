@@ -31,7 +31,7 @@ const fetchProduct = () => {
             productRating.innerText = `${
                 product.product_original_stock - product.product_stock
             } sold`;
-            productPrice.innerText = product.product_price;
+            productPrice.innerText = `$${product.product_price.toFixed(2)}`;
             productStock.innerText = `${product.product_stock} pieces left`;
             productDescription.innerText = product.product_description;
         })
