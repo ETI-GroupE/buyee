@@ -150,7 +150,6 @@ const submit = () => {
     // formData.append("file", image, image.name);
     formData.append("file", image, image.name);
     axios
-        // .post(`http://localhost:5010/api/v1/product`, formData)
         .post(
             `https://buyee-catalog-ksbujg5hza-as.a.run.app/api/v1/product`,
             formData
