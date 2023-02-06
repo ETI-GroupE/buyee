@@ -33,6 +33,7 @@ const fetchProduct = () => {
             const productStock = document.getElementById("productStock");
             const productDescription =
                 document.getElementById("productDescription");
+            const productStatus = document.getElementById("productStatus");
 
             productImage.style.backgroundImage = `url('${product.product_image_url}')`;
             productName.innerText = product.product_name;
@@ -44,6 +45,12 @@ const fetchProduct = () => {
             productPrice.innerText = `$${product.product_price.toFixed(2)}`;
             productStock.innerText = `${product.product_stock} pieces left`;
             productDescription.innerText = product.product_description;
+            productStatus.className = `badge mt-2 ${
+                product.product_status === "ACTIVE"
+                    ? "text-bg-success"
+                    : "text-bg-danger"
+            }`;
+            productStatus.innerText = product.product_status;
 
             // Modal
             const updateProductName =
