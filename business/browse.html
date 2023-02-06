@@ -9,7 +9,7 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <!-- Customize js path -->
-    <link rel="stylesheet" href="/customer/css/browse.css">
+    <link rel="stylesheet" href="/business/css/browse.css">
 </head>
 
 <body>
@@ -20,43 +20,18 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbar-customer">
+            <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbar-business">
                 <ul class="navbar-nav d-flex align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/customer/browse.html">Browse</a>
+                        <a class="nav-link text-white" href="/business/browse.html">My Products</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Checkout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Purchases</a>
+                    <li class="nav-item d-flex align-items-center ms-2">
+                        <a class="nav-link text-white" href="#">Purchase History</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <form class="w-50 m-auto mt-4 d-flex justify-content-between">
-        <div class="flex-fill">
-            <input class="form-control shadow-none" type="text" placeholder="Search for products"
-                aria-label="default input example" id="search-bar-input" name="product_name">
-        </div>
-        <!-- <div class="flex-fill">
-            <input class="form-control shadow-none" type="text" placeholder="Search for products, brands and shops"
-                aria-label="default input example" id="search-bar-input" name="product_name">
-        </div> -->
-        <div>
-            <button type="submit" class="btn btn-primary mb-3" id="search-bar-button">Search</button>
-        </div>
-        <!-- <div>
-            <button type="submit" class="btn btn-primary mb-3" id="search-bar-button">Search Catelog</button>
-        </div>
-        <div>
-            <button type="submit" class="btn btn-primary mb-3" id="search-bar-button">Search Brand</button>
-        </div> -->
-    </form>
 
     <div class="w-75 m-auto mt-4 d-flex justify-content-start align-items-start flex-wrap" id="productDisplay">
         <!-- To be inserted -->
@@ -75,6 +50,6 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <!-- Customize js path -->
-<script src="/customer/js/browse.js"></script>
+<script src="/business/js/browse.js"></script>
 
 </html>

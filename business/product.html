@@ -9,7 +9,7 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <!-- Customize js path -->
-    <link rel="stylesheet" href="/customer/css/product.css">
+    <link rel="stylesheet" href="/business/css/product.css">
 </head>
 
 <body>
@@ -20,19 +20,13 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbar-customer">
+            <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbar-business">
                 <ul class="navbar-nav d-flex align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/customer/browse.html">Browse</a>
+                        <a class="nav-link text-white" href="/business/browse.html">My Products</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Checkout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Purchases</a>
+                    <li class="nav-item d-flex align-items-center ms-2">
+                        <a class="nav-link text-white" href="#">Purchase History</a>
                     </li>
                 </ul>
             </div>
@@ -95,7 +89,7 @@
                     card's content.
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary mt-3">Add to Cart</button>
+                    <button type="submit" class="btn btn-primary mt-3">Edit Product</button>
                 </div>
             </div>
             <ul class="list-group list-group-flush" id="feedbackList"></ul>
@@ -115,6 +109,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <!-- Customize js path -->
-<script src="/customer/js/product.js"></script>
+<script src="/business/js/product.js"></script>
+<script src="/auth//js/requireAuth.js"></script>
 
 </html>

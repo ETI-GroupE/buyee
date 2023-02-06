@@ -1,10 +1,20 @@
 const fetchProduct = () => {
+    const userId = sessionStorage.getItem("userId");
+    const jwt = sessionStorage.getItem("jwt");
+    const email = sessionStorage.getItem("email");
+    const roles = sessionStorage.getItem("roles");
+
+    if ([userId, jwt, email, roles].includes(null)) {
+        window.location.href = "/auth/login.html";
+    }
+
     const urlSearchParams = new URLSearchParams(window.location.search);
     const { product_id } = Object.fromEntries(urlSearchParams.entries());
     axios
         .get("https://buyee-catalog-ksbujg5hza-as.a.run.app/api/v1/products", {
             params: {
                 product_id: product_id,
+                owner_id: userId,
             },
         })
         .then((response) => {

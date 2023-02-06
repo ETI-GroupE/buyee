@@ -29,16 +29,14 @@ a {
 .special-width {
     width: calc(20% - 8px);
 }
-#productCard{
-    width: 100% !important;
-}
 .productImage{
     /* background-color: aqua; */
-    background-repeat: no-repeat !important;
+    background-repeat: no-repeat;
     background-size: contain;
-    background-position: center;
+    background-position: 50%;
     aspect-ratio: 1 / 1;
-    width: 50%;
+    width: 100%;
+    max-height: 100%;
     border-radius: 5px;
 }
 
