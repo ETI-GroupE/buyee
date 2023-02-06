@@ -3,26 +3,20 @@ var errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
 $("#submitBtn").click(async function (event) {
 	event.preventDefault();
 	var username = $("#userField").val();
+	var email = $("#emailField").val();
 	var password = $("#passwordField").val();
-	const userData = JSON.stringify({ username: username, password: password });
+	var userId = sessionStorage.getItem("userId");
+	const userData = JSON.stringify({ userId: userId, username: username, password: password, email: email });
 	const customConfig = {
 		headers: {
 			"Content-Type": "application/json",
 		},
 	};
 	axios
-		.post("https://auth-ksbujg5hza-as.a.run.app/api/v1/signin", userData, customConfig)
+		.post("https://auth-ksbujg5hza-as.a.run.app/api/v1/user/update", userData, customConfig)
 		.then((response) => {
 			if (response.status == 200) {
-				sessionStorage.setItem("userId", response.data.id);
-				sessionStorage.setItem("jwt", response.data.accessToken);
-				sessionStorage.setItem("email", response.data.email);
-				sessionStorage.setItem("roles", response.data.roles);
-				if (response.data.roles.includes("ROLE_CUSTOMER")) {
-					window.location.href = "/customer/browse.html";
-				}
-				window.location.href = "/business/browse.html";
-				return false;
+				successModal.show();
 			}
 		})
 		.catch((error) => {
