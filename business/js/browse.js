@@ -84,6 +84,11 @@ const fetchProducts = () => {
                     <div class="productStock">${
                         product.product_stock
                     } pieces left</div>
+                    <div class="badge mt-2 ${
+                        product.product_status === "ACTIVE"
+                            ? "text-bg-success"
+                            : "text-bg-danger"
+                    }">${product.product_status}</div>
                 </a>
                 `;
             }
