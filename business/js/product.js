@@ -89,6 +89,19 @@ const fetchProduct = () => {
                 }
             }
             updateProductCategory.innerHTML = optionsHTML;
+
+            // Stop/start sales button
+            const saleStatusInput =
+                document.getElementById("saleProductStatus");
+            saleStatusInput.value = product.product_status;
+            const sales = document.getElementById("sales");
+            if (product.product_status === "ACTIVE") {
+                sales.className = "btn btn-danger mt-3";
+                sales.innerText = "Stop Sales";
+            } else {
+                sales.className = "btn btn-success mt-3";
+                sales.innerText = "Start Sales";
+            }
         })
         .catch((error) => console.error(error));
 };
@@ -197,6 +210,35 @@ const submit = () => {
                 product_category_id,
                 product_original_stock,
                 OG_product_original_stock,
+            }
+        )
+        .then((response) => {
+            fetchProduct();
+            fetchFeedback();
+        })
+        .catch((error) => console.error(error));
+};
+
+const saleButton = () => {
+    const userId = sessionStorage.getItem("userId");
+    const jwt = sessionStorage.getItem("jwt");
+    const email = sessionStorage.getItem("email");
+    const roles = sessionStorage.getItem("roles");
+
+    if ([userId, jwt, email, roles].includes(null)) {
+        window.location.href = "/auth/login.html";
+    }
+
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const { product_id } = Object.fromEntries(urlSearchParams.entries());
+
+    const productStatus = document.getElementById("saleProductStatus").value;
+    const product_status = productStatus === "ACTIVE" ? "INACTIVE" : "ACTIVE";
+    axios
+        .patch(
+            `https://buyee-catalog-ksbujg5hza-as.a.run.app/api/v1/product/status/${product_id}`,
+            {
+                product_status,
             }
         )
         .then((response) => {

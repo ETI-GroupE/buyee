@@ -5,6 +5,7 @@ const fetchProducts = () => {
         .get("https://buyee-catalog-ksbujg5hza-as.a.run.app/api/v1/products", {
             params: {
                 product_name: product_name,
+                product_status: "ACTIVE",
             },
         })
         .then(async (response) => {

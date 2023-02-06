@@ -26,4 +26,5 @@ axios
     })
     .catch((error) => {
         console.error("There was an error!", error.response.status);
+        window.location.href = "/auth/login.html";
     });

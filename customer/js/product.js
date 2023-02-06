@@ -101,5 +101,38 @@ const fetchFeedback = () => {
         .catch((error) => console.error(error));
 };
 
+const submitFeedback = () => {
+    const user_id = sessionStorage.getItem("userId");
+    const jwt = sessionStorage.getItem("jwt");
+    const email = sessionStorage.getItem("email");
+    const roles = sessionStorage.getItem("roles");
+
+    if ([userId, jwt, email, roles].includes(null)) {
+        window.location.href = "/auth/login.html";
+    }
+
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const { product_id } = Object.fromEntries(urlSearchParams.entries());
+
+    const rating = document.getElementById("feedbackRating").value;
+    const description = document.getElementById("feedbackDescription").value;
+
+    //Value for money but bad service
+    axios
+        .post(
+            `https://buyee-feedback-ksbujg5hza-as.a.run.app/api/v1/feedback`,
+            {
+                description,
+                rating,
+                user_id,
+                product_id,
+            }
+        )
+        .then((response) => {
+            fetchProduct();
+            fetchFeedback();
+        })
+        .catch((error) => console.error(error));
+};
 fetchProduct();
 fetchFeedback();
