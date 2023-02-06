@@ -1,4 +1,4 @@
-var errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
+var successModal = new bootstrap.Modal(document.getElementById("successModal"));
 
 $("#submitBtn").click(async function (event) {
 	event.preventDefault();
@@ -20,14 +20,6 @@ $("#submitBtn").click(async function (event) {
 			}
 		})
 		.catch((error) => {
-			if (error.response.status == 404) {
-				$("#errMsg").text("User not found");
-				errorModal.show();
-			}
-			if (error.response.status == 401) {
-				errorModal.show();
-				$("#errMsg").text("Invalid Password");
-			}
 			console.error("There was an error!", error.response.status);
 		});
 });
