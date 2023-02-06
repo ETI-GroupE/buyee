@@ -20,7 +20,7 @@ const fetchProduct = () => {
         .then(async (response) => {
             console.log(product_id, response.data);
             if (response.data.length === 0 || response.data.length > 1) {
-                window.location.href = "/customer/browse.html";
+                window.location.href = "/business/browse.html";
             }
             const product = response.data[0];
 
@@ -108,7 +108,7 @@ const fetchFeedback = () => {
         .then((response) => {
             console.log(product_id, response.data);
             if (response.data.length === 0 || response.data.length > 1) {
-                window.location.href = "/customer/browse.html";
+                window.location.href = "/business/browse.html";
             }
             const feedbackStats = response.data;
 

@@ -88,6 +88,75 @@ const fetchProducts = () => {
                 `;
             }
             productDisplay.innerHTML = productHTML;
+
+            // Modal
+            const createProductCategory = document.getElementById(
+                "createProductCategory"
+            );
+
+            const categories = (
+                await axios.get(
+                    "https://buyee-catalog-ksbujg5hza-as.a.run.app/api/v1/categories"
+                )
+            ).data;
+            let optionsHTML = "";
+            for (const category of categories) {
+                optionsHTML += `
+                    <option value=${category.category_id}>${category.category_name}</option>
+                `;
+            }
+            createProductCategory.innerHTML = optionsHTML;
+        })
+        .catch((error) => console.error(error));
+};
+
+const submit = () => {
+    const userId = sessionStorage.getItem("userId");
+    const jwt = sessionStorage.getItem("jwt");
+    const email = sessionStorage.getItem("email");
+    const roles = sessionStorage.getItem("roles");
+
+    if ([userId, jwt, email, roles].includes(null)) {
+        window.location.href = "/auth/login.html";
+    }
+
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const { product_id } = Object.fromEntries(urlSearchParams.entries());
+
+    const product_name = document.getElementById("createProductName").value;
+    const product_price = document.getElementById("createProductPrice").value;
+    const product_description = document.getElementById(
+        "createProductDescription"
+    ).value;
+    const product_ship_location = document.getElementById(
+        "createProductShipLocation"
+    ).value;
+    const product_category_id = document.getElementById(
+        "createProductCategory"
+    ).value;
+    const product_stock = document.getElementById("createProductStock").value;
+    const owner_id = userId;
+
+    const formData = new FormData();
+    const image = document.getElementById("createProductImage").files[0];
+    formData.append("product_name", product_name);
+    formData.append("owner_id", owner_id);
+    formData.append("product_price", product_price);
+    formData.append("product_description", product_description);
+    formData.append("product_ship_location", product_ship_location);
+    formData.append("product_category_id", product_category_id);
+    formData.append("product_stock", product_stock);
+    console.log(image, image.name);
+    // formData.append("file", image, image.name);
+    formData.append("file", image, image.name);
+    axios
+        // .post(`http://localhost:5010/api/v1/product`, formData)
+        .post(
+            `https://buyee-catalog-ksbujg5hza-as.a.run.app/api/v1/product`,
+            formData
+        )
+        .then((response) => {
+            fetchProducts();
         })
         .catch((error) => console.error(error));
 };

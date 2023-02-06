@@ -32,15 +32,66 @@
             </div>
         </div>
     </nav>
-    <form class="w-50 m-auto mt-4 d-flex justify-content-between">
-        <div class="w-100">
-            <button type="submit" class="btn btn-primary mb-3 w-100" id="search-bar-button">Add Product</button>
-        </div>
-    </form>
+    <div class="w-50 m-auto mt-4 d-flex justify-content-between">
+        <button type="button" class="btn btn-primary mb-3 w-100" data-bs-toggle="modal" data-bs-target="#createModal"
+            id="search-bar-button">Add Product</button>
+    </div>
     <div class="w-75 m-auto mt-4 d-flex justify-content-start align-items-start flex-wrap" id="productDisplay">
         <!-- To be inserted -->
     </div>
-
+    <div class="modal fade" id="createModal" data-bs-backdrop="static" data-bs-backdrop="static"
+        data-bs-keyboard="false" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="createModalLabel">Product Information</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div>
+                            <label for="createProductName" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="createProductName">
+                        </div>
+                        <div>
+                            <label for="createProductPrice" class="col-form-label">Price ($):</label>
+                            <input type="number" class="form-control" id="createProductPrice">
+                        </div>
+                        <div>
+                            <label for="createProductDescription" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="createProductDescription"></textarea>
+                        </div>
+                        <div>
+                            <label for="createProductShipLocation" class="col-form-label">Shipping Location:</label>
+                            <input type="text" class="form-control" id="createProductShipLocation">
+                        </div>
+                        <div>
+                            <label for="createProductCategory" class="col-form-label">Category:</label>
+                            <select class="form-select" aria-label="Default select example" id="createProductCategory">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="createProductOriginalStock" class="col-form-label">Stock Available:</label>
+                            <input type="number" class="form-control" id="createProductStock">
+                        </div>
+                        <div>
+                            <label for="createProductImage" class="col-form-label">Display Image:</label>
+                            <input type="file" class="form-control" id="createProductImage">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" onclick="submit()" data-bs-dismiss="modal"
+                        class="btn btn-primary">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
@@ -55,5 +106,6 @@
 
 <!-- Customize js path -->
 <script src="/business/js/browse.js"></script>
+<script src="/auth/js/requireBusinessAuth.js"></script>
 
 </html>
