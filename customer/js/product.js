@@ -7,7 +7,7 @@ const fetchProduct = () => {
                 product_id: product_id,
             },
         })
-        .then((response) => {
+        .then(async (response) => {
             console.log(product_id, response.data);
             if (response.data.length === 0 || response.data.length > 1) {
                 window.location.href = "/customer/browse.html";
@@ -34,6 +34,18 @@ const fetchProduct = () => {
             productPrice.innerText = `$${product.product_price.toFixed(2)}`;
             productStock.innerText = `${product.product_stock} pieces left`;
             productDescription.innerText = product.product_description;
+
+            // avatar icon
+            const owner = (
+                await axios.post(
+                    "https://auth-ksbujg5hza-as.a.run.app//api/v1/user/info",
+                    {
+                        userId,
+                    }
+                )
+            ).data;
+            const productOwner = document.getElementById("productOwner");
+            productOwner.innerText = `Sold by ${owner.username}`;
         })
         .catch((error) => console.error(error));
 };
