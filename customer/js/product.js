@@ -91,7 +91,7 @@ const fetchFeedback = () => {
                         ${feedback.date}
                     </div>
                     <div>
-                        ${feedback.description}
+                        (${feedback.rating}/5) ${feedback.description}
                     </div>
                 </li>
                 `;
@@ -129,8 +129,13 @@ const submitFeedback = () => {
             }
         )
         .then((response) => {
+            console.log("Finish update");
             fetchProduct();
             fetchFeedback();
+            const rating = document.getElementById("feedbackRating");
+            const description = document.getElementById("feedbackDescription");
+            rating.value = "";
+            description.value = "";
         })
         .catch((error) => console.error(error));
 };
