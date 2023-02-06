@@ -41,3 +41,5 @@ $("#submitBtn").click(async function (event) {
 $(".closeBtn").click(function () {
 	errorModal.hide();
 });
+
+//trigger
