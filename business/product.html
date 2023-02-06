@@ -90,18 +90,18 @@
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary mt-3" data-bs-toggle="modal"
-                        data-bs-target="#editModel">Edit Product</button>
+                        data-bs-target="#editModal">Edit Product</button>
                 </div>
             </div>
             <ul class="list-group list-group-flush" id="feedbackList"></ul>
         </div>
     </div>
-    <div class="modal fade" id="editModel" data-bs-backdrop="static" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="seditModelLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="editModelLabel">Product Information</h1>
+                    <h1 class="modal-title fs-5" id="editModalLabel">Product Information</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -112,7 +112,7 @@
                         </div>
                         <div>
                             <label for="updateProductPrice" class="col-form-label">Price ($):</label>
-                            <input type="text" class="form-control" id="updateProductPrice">
+                            <input type="number" class="form-control" id="updateProductPrice">
                         </div>
                         <div>
                             <label for="updateProductDescription" class="col-form-label">Description:</label>
@@ -163,6 +163,6 @@
 
 <!-- Customize js path -->
 <script src="/business/js/product.js"></script>
-<script src="/auth//js/requireAuth.js"></script>
+<script src="/auth/js/requireBusinessAuth.js"></script>
 
 </html>
