@@ -98,6 +98,28 @@
                     <button type="submit" class="btn btn-primary mt-3">Add to Cart</button>
                 </div>
             </div>
+            <ul class="list-group list-group-flush p-1">
+                <div class="d-flex flex-column align-items-end">
+                    <div class="mb-1 w-100">
+                        <select class="form-select shadow-none" aria-label="Default select example" id="feedbackRating">
+                            <option value="" disabled selected hidden>Select a rating</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="mb-1 w-100">
+                        <textarea class="form-control shadow-none" id="feedbackDescription" id="search-bar-input"
+                            placeholder="Type your comments..."></textarea>
+                    </div>
+                    <div>
+                        <button type="button" onclick="submitFeedback()" class="btn btn-primary"
+                            id="search-bar-button">Submit</button>
+                    </div>
+                </div>
+            </ul>
             <ul class="list-group list-group-flush" id="feedbackList"></ul>
         </div>
     </div>
