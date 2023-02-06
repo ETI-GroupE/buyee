@@ -6,10 +6,12 @@ $("#submitBtn").click(async function (event) {
 	var email = $("#emailField").val();
 	var password = $("#passwordField").val();
 	var userId = sessionStorage.getItem("userId");
+	var jwt = sessionStorage.getItem("jwt");
 	const userData = JSON.stringify({ userId: userId, username: username, password: password, email: email });
 	const customConfig = {
 		headers: {
 			"Content-Type": "application/json",
+			"x-access-token": jwt,
 		},
 	};
 	axios
