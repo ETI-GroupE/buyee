@@ -18,7 +18,10 @@ $("#submitBtn").click(async function (event) {
 				sessionStorage.setItem("jwt", response.data.accessToken);
 				sessionStorage.setItem("email", response.data.email);
 				sessionStorage.setItem("roles", response.data.roles);
-				window.location.href = "/index.html";
+				if (response.data.roles.includes("ROLE_CUSTOMER")) {
+					window.location.href = "/customer/browse.html";
+				}
+				window.location.href = "/business/browse.html";
 				return false;
 			}
 		})
