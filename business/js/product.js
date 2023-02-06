@@ -17,7 +17,7 @@ const fetchProduct = () => {
                 owner_id: userId,
             },
         })
-        .then((response) => {
+        .then(async (response) => {
             console.log(product_id, response.data);
             if (response.data.length === 0 || response.data.length > 1) {
                 window.location.href = "/customer/browse.html";
@@ -44,6 +44,51 @@ const fetchProduct = () => {
             productPrice.innerText = `$${product.product_price.toFixed(2)}`;
             productStock.innerText = `${product.product_stock} pieces left`;
             productDescription.innerText = product.product_description;
+
+            // Modal
+            const updateProductName =
+                document.getElementById("updateProductName");
+            const updateProductPrice =
+                document.getElementById("updateProductPrice");
+            const updateProductDescription = document.getElementById(
+                "updateProductDescription"
+            );
+            const updateProductShipLocation = document.getElementById(
+                "updateProductShipLocation"
+            );
+            const updateProductCategory = document.getElementById(
+                "updateProductCategory"
+            );
+            const updateProductOriginalStock = document.getElementById(
+                "updateProductOriginalStock"
+            );
+            const updateProductStock =
+                document.getElementById("updateProductStock");
+            updateProductName.value = product.product_name;
+            updateProductPrice.value = product.product_price;
+            updateProductDescription.value = product.product_description;
+            updateProductShipLocation.value = product.product_ship_location;
+            updateProductStock.value = product.product_stock;
+            updateProductOriginalStock.value = product.product_stock;
+
+            const categories = (
+                await axios.get(
+                    "https://buyee-catalog-ksbujg5hza-as.a.run.app/api/v1/categories"
+                )
+            ).data;
+            let optionsHTML = "";
+            for (const category of categories) {
+                if (category.category_id === product.product_category_id) {
+                    optionsHTML += `
+                        <option value=${category.category_id} selected>${category.category_name}</option>
+                    `;
+                } else {
+                    optionsHTML += `
+                        <option value=${category.category_id}>${category.category_name}</option>
+                    `;
+                }
+            }
+            updateProductCategory.innerHTML = optionsHTML;
         })
         .catch((error) => console.error(error));
 };
@@ -107,6 +152,56 @@ const fetchFeedback = () => {
                 `;
             });
             feedbackList.innerHTML = feedbackHTML;
+        })
+        .catch((error) => console.error(error));
+};
+
+const submit = () => {
+    const userId = sessionStorage.getItem("userId");
+    const jwt = sessionStorage.getItem("jwt");
+    const email = sessionStorage.getItem("email");
+    const roles = sessionStorage.getItem("roles");
+
+    if ([userId, jwt, email, roles].includes(null)) {
+        window.location.href = "/auth/login.html";
+    }
+
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const { product_id } = Object.fromEntries(urlSearchParams.entries());
+
+    const product_name = document.getElementById("updateProductName").value;
+    const product_price = document.getElementById("updateProductPrice").value;
+    const product_description = document.getElementById(
+        "updateProductDescription"
+    ).value;
+    const product_ship_location = document.getElementById(
+        "updateProductShipLocation"
+    ).value;
+    const product_category_id = document.getElementById(
+        "updateProductCategory"
+    ).value;
+    const product_original_stock =
+        document.getElementById("updateProductStock").value;
+    const OG_product_original_stock = document.getElementById(
+        "updateProductOriginalStock"
+    ).value;
+
+    axios
+        .put(
+            `https://buyee-catalog-ksbujg5hza-as.a.run.app/api/v1/product/${product_id}`,
+            {
+                product_name,
+                product_price,
+                product_description,
+                product_ship_location,
+                product_category_id,
+                product_original_stock,
+                OG_product_original_stock,
+            }
+        )
+        .then((response) => {
+            fetchProduct();
+            fetchFeedback();
         })
         .catch((error) => console.error(error));
 };
