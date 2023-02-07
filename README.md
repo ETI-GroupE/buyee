@@ -76,9 +76,9 @@ Design consideration: To have 2 tables in this database, cartdiscount(shopCartId
 table to store all relevant information about discounts
 
 Endpoints:
-(GET)https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discounts -> Get all discounts available
-(GET)https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discounts/:shopCartId -> Get all discounts applied in the given cart.
-(POST)https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discountapply/:shopcartId/:discount_id -> Apply discount to cart.
+(GET)https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discounts -> Get all discounts available<br>
+(GET)https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discounts/:shopCartId -> Get all discounts applied in the given cart.<br>
+(POST)https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discountapply/:shopcartId/:discount_id -> Apply discount to cart.<br>
 
 
 ###Delivery (Herman)
