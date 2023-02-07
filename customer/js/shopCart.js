@@ -1,5 +1,5 @@
-//userId = sessionStorage.getItem("userId");
-const userId = 1;
+userId = sessionStorage.getItem("userId");
+//const userId = 1;
 async function setShopCartID() {
   const response = await fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCartUser?UserID=' + userId);
   const data = await response.json();
