@@ -8,7 +8,7 @@ Name: Lee Wen Kang (10203100B)<br />
 Name: Lee Wen Kang (10203100B)<br />
 Name: Lee Wen Kang (10203100B)<br />
 Name: Lee Wen Kang (10203100B)<br />
-Name: Lee Wen Kang (10203100B)<br />
+Name: Brian Lim (10208584A)<br />
 
 ## Contents
 
@@ -29,6 +29,7 @@ TODO: This assignment is to implement a ride-share platform using a microservice
 | 4   | rideshare-ta_process-svc | Service that is in charge of assigning trips to drivers. Trip assignment is abbreviated as ta.               | [Link](https://github.com/NPLeeWenKang/rideshare-ta_process-svc) |
 | 5   | rideshare-system-db      | MySQL for persistent data storage.                                                                           | [Link](https://github.com/NPLeeWenKang/rideshare-system-db)      |
 | 6   | rideshare-ui (bonus)     | For the bonus marks, this service serves a website built using React.                                        | [Link](https://github.com/NPLeeWenKang/rideshare-ui)             |
+| 7   | Purchase History         | Allow customers to view all their purchase history and business owners to view their products sold           | [Link](https://github.com/ETI-GroupE/purchase-history)           |
 
 ## Solution Design
 
@@ -45,6 +46,17 @@ possible talking points
 ### Catalog (Wen Kang)
 
 ### Feedback (Wen Kang)
+
+### Purchase History (Brian)
+Description: Purchase History is to allow both types of users, customers and business owners to view all products they have bought
+in the past as well ass being able to view the products that are being sold on Buyee respectively.
+
+Endpoints made: 
+1). api/v1/allpurchase              URL: https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/allpurchase                        ("GET")
+2). api/v1/updatehistory            URL: https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/updatehistory                      ("POST")
+3). api/v1/viewAllBusinessPurchase   URL: https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/api/v1/viewAllBusinessPurchase    ("GET")
+
+Design Consideration: To work with Shopping Cart and Delivery & Discount Endpoints
 
 ### Architecture Diagram
 
