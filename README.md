@@ -13,11 +13,11 @@ Name: Brian Lim (10208584A)<br />
 ## Contents
 
 1. [Repositories](#Repositories)
-2. [Solution Design](#Solution-Architecture)
-3. [Architecture Design](#Solution-Architecture)
+2. [Solution Design](#Solution-Design)
+3. [Architecture Design](#Architecture-Design)
 4. [Startup Guide](#Startup-Guide)
 
-TODO: This assignment is to implement a ride-share platform using a microservice architecture with 2 primary groups of users, passengers and drivers. Passengers should be able to start trips while drivers should be able to accept them.
+This assignment is to develop a program of our choice while apply cloud native concepts. The program must be decomposed into coherent, loosely coupled microservices. You need to consider operational efficiency and ability to recover from failures in order to minimize any impact on business operations.
 
 ## Repositories
 
@@ -63,7 +63,7 @@ Endpoints made:
 
 Design Consideration: To work with Shopping Cart and Delivery & Discount Endpoints
 
-### Architecture Diagram
+### Architecture Design
 
 ## Startup Guide
 
