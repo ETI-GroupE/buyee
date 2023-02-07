@@ -138,7 +138,7 @@ await fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingC
     let finalTotalAmt = parseFloat(totalPayment);
 
       const checkoutData = {
-        "shopCartID": 1,
+        "shopCartID": 19,
         "emailAddr": emailAddress,
         "shipping": shipping,
         "postalCode": postalCode,
