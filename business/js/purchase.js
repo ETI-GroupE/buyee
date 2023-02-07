@@ -1,7 +1,7 @@
 const userId = sessionStorage.getItem("userId");
 
 
-fetch('https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/allpurchase?UserID=2')
+fetch('https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/viewAllBusinessPurchase?ProductID=6')
   .then(response => {
     console.log(response.status);
     return response.json();
