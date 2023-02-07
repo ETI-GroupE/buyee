@@ -75,18 +75,18 @@ Description: Discounts service stores all the discounts available in our app , a
 Design consideration: To have 2 tables in this database, cartdiscount(shopCartId,discountId) to store all discounts applied to a shopping cart , as well as discounts
 table to store all relevant information about discounts
 
-Endpoints:
+Endpoints:<br>
 (GET)https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discounts -> Get all discounts available<br>
 (GET)https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discounts/:shopCartId -> Get all discounts applied in the given cart.<br>
 (POST)https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discountapply/:shopcartId/:discount_id -> Apply discount to cart.<br>
 
 
-###Delivery (Herman)
+### Delivery (Herman)
 Description: Delivery service stores orderstatus & location of order.Mainly used for Admin user to update delivery status of productId,orderId.
 
 Design Consideration: contains database with composite key(orderId,productId), since different products in the order can have different delivery status,locations &times. Interacts with Purchase History to populate the database so status can be updated. 
 
-Endpoints:
+Endpoints:<br>
 (POST)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status -> post purchasehistory body (all purchasehistory records) into orderstatus database
 (GET)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status/:orderId/:productId ->get order status of product in order
 (GET)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status -> Get all records from orderstatus. To be populated for Admin UI so admin user can update delivery status
