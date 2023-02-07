@@ -1,10 +1,10 @@
 const roles = sessionStorage.getItem("roles");
 if (roles === "ROLE_ADMIN") {
-    window.location.href = "/delivery/delivery.html";
+	window.location.href = "/delivery/delivery.html";
 } else if (roles === "ROLE_CUSTOMER") {
-    window.location.href = "/customer/browse.html";
+	window.location.href = "/customer/browse.html";
 } else if (roles === "ROLE_BUSINESS") {
-    window.location.href = "/business/browse.html";
+	window.location.href = "/business/browse.html";
 }
 
 var successModal = new bootstrap.Modal(document.getElementById("successModal"));
@@ -17,6 +17,7 @@ $("#submitBtn").click(async function (event) {
 	var password = $("#passwordField").val();
 	var role = "customer";
 	if (!$("#customerRadio").is(":checked")) {
+		console.log("business");
 		role = "business";
 	}
 	const userData = JSON.stringify({ username: username, email: email, password: password, roles: [role] });
@@ -41,11 +42,11 @@ $("#submitBtn").click(async function (event) {
 });
 
 $("#login").click(function () {
-    window.location.href = "/auth/login.html";
-    return false;
+	window.location.href = "/auth/login.html";
+	return false;
 });
 
 $(".closeBtn").click(function () {
-    successModal.hide();
-    errorModal.hide();
+	successModal.hide();
+	errorModal.hide();
 });
