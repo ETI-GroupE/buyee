@@ -1,9 +1,5 @@
-//const userId = sessionStorage.getItem("userId");
+//userId = sessionStorage.getItem("userId");
 const userId = 1;
-
-const ShopCartID = 1;
-
-
 async function setShopCartID() {
   const response = await fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCartUser?UserID=' + userId);
   const data = await response.json();
@@ -19,34 +15,28 @@ async function setShopCartID() {
   }
 }
 
-async function main() {
-  await setShopCartID();
-  const ShopCartID = sessionStorage.getItem("ShopCartID");
-  console.log(ShopCartID);
-}
-
-main()
-
-fetch('https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discounts')
-  .then(response => response.json())
-  .then(data => {
-    // handle the data here
-    console.log(data)
-    let dropdown = document.getElementById("myDropdown");
-    dropdown.innerHTML = "";
-     
-    data.forEach(item => {
-      let option = document.createElement("a");
-      option.innerHTML = item.name;
-      option.setAttribute("id", item.discountId);
-      option.setAttribute("value", item.amount);
-      option.setAttribute("onclick", "discountClick(this)");
-      dropdown.appendChild(option);
+async function getDiscount() {
+  await fetch('https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discounts')
+    .then(response => response.json())
+    .then(data => {
+      // handle the data here
+      console.log(data)
+      let dropdown = document.getElementById("myDropdown");
+      dropdown.innerHTML = "";
+      
+      data.forEach(item => {
+        let option = document.createElement("a");
+        option.innerHTML = item.name;
+        option.setAttribute("id", item.discountId);
+        option.setAttribute("value", item.amount);
+        option.setAttribute("onclick", "discountClick(this)");
+        dropdown.appendChild(option);
+      })
     })
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
 
 function discountClick(data) {
   let option = document.getElementById("discountAmount");
@@ -62,7 +52,9 @@ function discountClick(data) {
 };
   
 finalSubTotal = 0;
-fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCart?ShopCartID=' + ShopCartID)
+async function loadProduct(ShopCartID){
+console.log("shop1"+ ShopCartID)
+await fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCart?ShopCartID=' + ShopCartID)
   .then(response => {
     console.log(response.status);
     return response.json();
@@ -126,16 +118,21 @@ fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCart?Sh
     .catch(error => {
     console.error('Error:', error);
   });
+}
 
 
 
   const totalPayment = sessionStorage.getItem("FinalTotal");
   function checkout() {
+    const ShopCartID = sessionStorage.getItem("ShopCartID");
     var emailAddress = document.getElementById("email").value;
     var shipping = document.getElementById("shipping").value;
     var postal = document.getElementById("postalCode").value;
     var creditCard = document.getElementById("creditCard").value;
     var finalTotal = document.getElementById("FinalTotal").innerText;
+
+    console.log("shopcart"+ShopCartID)
+
 
     let postalCode = parseInt(postal);
     let finalTotalAmt = parseFloat(totalPayment);
@@ -174,8 +171,8 @@ fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCart?Sh
         console.log(response.status)
         if (response.ok) {
             //add decrease value
-            reduceProduct()
-            sendDiscountID()
+            reduceProduct(ShopCartID)
+            sendDiscountID(ShopCartID)
             window.location.href = "/shopCart/orderCompletetion.html"
           return ;
         } 
@@ -201,7 +198,7 @@ fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCart?Sh
       });
     }
 
-function reduceProduct(){
+function reduceProduct(ShopCartID){
   fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCart?ShopCartID='+ ShopCartID)
   .then(response => {
     console.log(response.status);
@@ -219,7 +216,7 @@ function reduceProduct(){
     })
   });
 }
-function sendDiscountID(){
+function sendDiscountID(ShopCartID){
   fetch('https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discountapply/'+ShopCartID+"/"+sessionStorage.getItem("discountId"), {method: 'POST'})
   .then(response => {
     console.log(response.status);
@@ -248,3 +245,13 @@ window.onclick = function(event) {
     }
   }
 }
+
+async function main() {
+  await setShopCartID();
+  const ShopCartID = sessionStorage.getItem("ShopCartID");
+  console.log("shop"+ ShopCartID);
+  await getDiscount(ShopCartID);
+  await loadProduct(ShopCartID);
+}
+
+main()
