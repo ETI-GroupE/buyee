@@ -1,5 +1,5 @@
 // userId = sessionStorage.getItem("userId")
-userId = 1
+userId = 1;
 
 const fetchProduct = () => {
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -155,58 +155,64 @@ const submitFeedback = () => {
         .catch((error) => console.error(error));
 };
 async function setShopCartID() {
-    const response = await fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCartUser?UserID=' + userId);
+    const response = await fetch(
+        "https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCartUser?UserID=" +
+            userId
+    );
     const data = await response.json();
-    
+
     if (data == null) {
-    const postResponse = await fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCartUser?UserID=' + userId, {method: 'POST'});
-    const postData = await postResponse.json();
-    sessionStorage.setItem("ShopCartID", postData);
+        const postResponse = await fetch(
+            "https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCartUser?UserID=" +
+                userId,
+            { method: "POST" }
+        );
+        const postData = await postResponse.json();
+        sessionStorage.setItem("ShopCartID", postData);
     } else {
-    data.forEach(item => {
-        sessionStorage.setItem("ShopCartID", item.shopCartID);
-    });
+        data.forEach((item) => {
+            sessionStorage.setItem("ShopCartID", item.shopCartID);
+        });
     }
 }
-const addItem =  () => {
-
+const addItem = () => {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const { product_id } = Object.fromEntries(urlSearchParams.entries());
 
-    let productid = parseInt(product_id)
-    let ShopCartID = sessionStorage.getItem("ShopCartID")
-    let ShopCartId = parseInt(ShopCartID)
-    console.log("shop" + ShopCartID)
-    
+    let productid = parseInt(product_id);
+    let ShopCartID = sessionStorage.getItem("ShopCartID");
+    let ShopCartId = parseInt(ShopCartID);
+    console.log("shop" + ShopCartID);
+
     const productData = {
-        "shopCartID":ShopCartId,
-        "productID": productid,
-        "quantity": 1,
+        shopCartID: ShopCartId,
+        productID: productid,
+        quantity: 1,
     };
 
-    fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCart', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(
-            productData
-        )
-      })
-      .then((response)=>{
-        console.log(response.status)
-        if (response.status == 202){
-            window.location.href = "/shopCart/shopcart.html";
-        }  
-      })
-}
-  
+    fetch(
+        "https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCart",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(productData),
+        }
+    ).then((response) => {
+        console.log(response.status);
+        if (response.status == 202) {
+            window.location.href = "/customer/shopcart.html";
+        }
+    });
+};
+
 async function main() {
-await setShopCartID();
-const ShopCartID = sessionStorage.getItem("ShopCartID");
-console.log(ShopCartID);
+    await setShopCartID();
+    const ShopCartID = sessionStorage.getItem("ShopCartID");
+    console.log(ShopCartID);
 }
-  
+
 main();
 fetchProduct();
 fetchFeedback();
