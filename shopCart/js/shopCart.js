@@ -99,10 +99,9 @@ fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCart?Sh
       .catch(error => {
         console.error('Error:', error);
       });
-      JSON.stringify(checkoutData)
-      console.log(checkoutData)
+      console.log(JSON.stringify(checkoutData))
 
-      fetch('http://localhost:5000/api/v1/checkout', {
+      fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
