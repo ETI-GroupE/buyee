@@ -1,0 +1,40 @@
+
+
+.eachOrder{
+
+    
+    background-color: white;
+    
+}
+.orderDisplay{
+    background-color: white;
+
+}
+
+img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+ 
+}
+
+.card{
+   margin:30px 50px 30px 85px;
+}
+img{
+    height: 150px;
+    width:150px;
+}
+
+.prodnm,.h2{
+     text-align: center;
+     font-weight: bold;
+    
+}
+
+
+div{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
