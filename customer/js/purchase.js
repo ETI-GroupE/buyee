@@ -1,7 +1,7 @@
 const userId = sessionStorage.getItem("userId");
+const ShopCartID = sessionStorage.getItem("ShopCartID")
 
-
-fetch('https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/allpurchase?UserID=2')
+fetch('https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/allpurchase?UserID=1')
   .then(response => {
     console.log(response.status);
     return response.json();
@@ -27,7 +27,7 @@ fetch('https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/allpurcha
           let price = row.insertCell();
           let quantity = row.insertCell();
           let Total = row.insertCell();
-
+            //https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/checkout
           // Set styles for each cell
           productImage.style.textAlign = "center";
           productName.style.textAlign = "center";
@@ -47,7 +47,24 @@ fetch('https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/allpurcha
           quantity.innerHTML = itemId.quantity;
           Total.innerHTML = "$" + subTotalAmt.toFixed(2);
         });
-       
+        fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/checkout?ShopCartID=2')
+        .then(response => {
+            console.log(response.status);
+            return response.json();
+          }) 
+          .then(data => {
+            
+            data.forEach(itemID => {
+              let specificValue = 0;
+              finalSubTotal = itemID.totalPayment;
+              console.log("specific Value: " +finalSubTotal)
+              let FinalAmt = document.getElementById("SubTotal")
+            FinalAmt.style = "margin-top: 40px; text-align: right; font-size: 25px; color: black;";
+            FinalAmt.innerHTML = "Sub Total : $"+ finalSubTotal.toFixed(2);
+            });
+            
+          });
+        
       })
       .catch(error => {
         console.error('Error:', error);

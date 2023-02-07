@@ -23,7 +23,6 @@ fetch('https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/viewAllBu
           // Create cells for each item property
           let productImage = row.insertCell();
           let productName = row.insertCell();
-          let productDescription = row.insertCell();
           let price = row.insertCell();
           let quantity = row.insertCell();
           let Total = row.insertCell();
@@ -31,7 +30,6 @@ fetch('https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/viewAllBu
           // Set styles for each cell
           productImage.style.textAlign = "center";
           productName.style.textAlign = "center";
-          productDescription.style.textAlign = "center";
           price.style.textAlign="center";
           quantity.style.textAlign = "center";
           Total.style.textAlign = "center";
@@ -42,7 +40,6 @@ fetch('https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/viewAllBu
           // Populate the cells with item data
           productImage.innerHTML = "<img src='" + item.product_image_url + "'' text-align: center width='100' height='120'>";;
           productName.innerHTML = item.product_name;
-          productDescription.innerHTML = item.product_description;
           price.innerHTML= "$" + item.product_price;
           quantity.innerHTML = itemId.quantity;
           Total.innerHTML = "$" + subTotalAmt.toFixed(2);
