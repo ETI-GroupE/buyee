@@ -1,5 +1,5 @@
-// userId = sessionStorage.getItem("userId")
-userId = 1;
+userId = sessionStorage.getItem("userId")
+//userId = 1;
 
 const fetchProduct = () => {
     const urlSearchParams = new URLSearchParams(window.location.search);
