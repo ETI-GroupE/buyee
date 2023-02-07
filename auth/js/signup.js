@@ -7,7 +7,7 @@ $("#submitBtn").click(async function (event) {
 	var email = $("#emailField").val();
 	var password = $("#passwordField").val();
 	var role = "customer";
-	if ($("#customerRadio").is(":checked")) {
+	if (!$("#customerRadio").is(":checked")) {
 		role = "business";
 	}
 	const userData = JSON.stringify({ username: username, email: email, password: password, roles: [role] });

@@ -18,8 +18,9 @@ $("#submitBtn").click(async function (event) {
 				sessionStorage.setItem("jwt", response.data.accessToken);
 				sessionStorage.setItem("email", response.data.email);
 				sessionStorage.setItem("roles", response.data.roles);
-				if (response.data.roles.includes("ROLE_CUSTOMER")) {
+				if (response.data.roles.includes("ROLE_CUSTOMER") || response.data.roles == "ROLE_CUSTOMER") {
 					window.location.href = "/customer/browse.html";
+					return false;
 				}
 				window.location.href = "/business/browse.html";
 				return false;
