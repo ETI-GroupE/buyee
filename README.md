@@ -103,6 +103,10 @@ Endpoints made:
 Design Consideration: To work with Shopping Cart and Delivery & Discount Endpoints
 
 ### Shopping Cart & checkout (Lincoln)
+![image](https://user-images.githubusercontent.com/73088199/217388048-02336b18-613b-487d-ad24-3a1ff639d0d2.png)
+![image](https://user-images.githubusercontent.com/73088199/217388075-8231de12-531a-4f95-a13b-093606c1e42f.png)
+
+
 
 Design Considerations: Left calculation of final amount to be done in the backend before sending it to the checkout database. The shopping cart user database will have a many to one relationship between user to shopping cart respectively. This is so that users can have multiple shopping carts which can be turned into orders in the product history page. The shopping cart will hold just the product ID and will query for the information in order to reduce redundent data. Finally checkout will contain the nessasary information needed for users to checkout of the account such as devliery address and the credit card details.
 
