@@ -28,8 +28,7 @@ This assignment is to develop a program of our choice while apply cloud native c
 | 3   | rideshare-trip-svc       | Interacts directly with the database for persistent data storage for trips and its assignments. Uses REST.   | [Link](https://github.com/NPLeeWenKang/rideshare-trip-svc)       |
 | 4   | rideshare-ta_process-svc | Service that is in charge of assigning trips to drivers. Trip assignment is abbreviated as ta.               | [Link](https://github.com/NPLeeWenKang/rideshare-ta_process-svc) |
 | 5   | rideshare-system-db      | MySQL for persistent data storage.                                                                           | [Link](https://github.com/NPLeeWenKang/rideshare-system-db)      |
-| 6   | Discounts                | Discounts, has endpoints                                                                                     | [Link]             
-(https://github.com/ETI-GroupE/discounts)                  |
+| 6   | Discounts                | Discounts, has endpoints that shopping cart needs                                                            | [Link]       (https://github.com/ETI-GroupE/discounts)                  |
 | 7   | Purchase History         | Allow customers to view all their purchase history and business owners to view their products sold           | [Link](https://github.com/ETI-GroupE/purchase-history)           |
 | 7   | Shopping Cart & checkout | Allow customers to view all their purchase history and business owners to view their products sold           | [Link](https://github.com/ETI-GroupE/ShoppingCart)               |
 
