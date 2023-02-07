@@ -259,7 +259,7 @@ async function afterCheckout() {
   ShopCartID = sessionStorage.getItem("ShopCartID")
   await reduceProduct(ShopCartID)
   await sendDiscountID(ShopCartID)
-  //window.location.href = "/shopCart/orderCompletetion.html"
+  window.location.href = "/shopCart/orderCompletetion.html"
 }
 
 main()
