@@ -9,9 +9,6 @@ a {
     padding: 4px 8px 4px 8px !important;
 }
 
-#search-bar-input {
-    border-radius: 0.375rem 0rem 0rem 0.375rem !important;
-}
 #search-bar-input:focus {
     border-color: #FE6032;
 }
@@ -19,7 +16,6 @@ a {
 #search-bar-button{
     background-color: #FE6032;
     border-color: #FE6032;
-    border-radius: 0rem 0.375rem 0.375rem 0rem !important;
 }
 
 .product:hover{

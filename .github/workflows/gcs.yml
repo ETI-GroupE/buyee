@@ -27,4 +27,3 @@ jobs:
 
     - name: 'Use gcloud CLI'
       run: 'gsutil -m rsync -R -d -x gha-*.json . gs://buyee'
-    - run: ls

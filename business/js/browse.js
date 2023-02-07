@@ -84,6 +84,11 @@ const fetchProducts = () => {
                     <div class="productStock">${
                         product.product_stock
                     } pieces left</div>
+                    <div class="badge mt-2 ${
+                        product.product_status === "ACTIVE"
+                            ? "text-bg-success"
+                            : "text-bg-danger"
+                    }">${product.product_status}</div>
                 </a>
                 `;
             }
@@ -150,7 +155,6 @@ const submit = () => {
     // formData.append("file", image, image.name);
     formData.append("file", image, image.name);
     axios
-        // .post(`http://localhost:5010/api/v1/product`, formData)
         .post(
             `https://buyee-catalog-ksbujg5hza-as.a.run.app/api/v1/product`,
             formData

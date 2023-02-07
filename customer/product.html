@@ -2,6 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/Buyee.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buyee</title>
@@ -15,7 +16,7 @@
 <body>
     <nav class="navbar navbar-expand-lg ps-5 pe-5" style="background-color: #FE6032;">
         <div class="container-fluid">
-            <a class="navbar-brand text-white fw-bold" href="#">Buyee</a>
+            <a class="navbar-brand text-white fw-bold" href="/index.html">Buyee</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,12 +35,15 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Purchases</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/auth/logout.html">Log Out</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="w-50 m-auto mt-4 d-flex align-items-center flex-column" id="productDisplay">
+    <div class="w-50 m-auto mt-4 mb-5 d-flex align-items-center flex-column" id="productDisplay">
         <!-- To be inserted -->
         <div class="card" id="productCard">
             <div class="mt-2">
@@ -98,6 +102,30 @@
                     <button type="submit" class="btn btn-primary mt-3">Add to Cart</button>
                 </div>
             </div>
+            <ul class="list-group list-group-flush p-3" id="productOwner">
+            </ul>
+            <ul class="list-group list-group-flush p-1">
+                <div class="d-flex flex-column align-items-end">
+                    <div class="mb-1 w-100">
+                        <select class="form-select shadow-none" aria-label="Default select example" id="feedbackRating">
+                            <option value="" disabled selected hidden>Select a rating</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="mb-1 w-100">
+                        <textarea class="form-control shadow-none" id="feedbackDescription" id="search-bar-input"
+                            placeholder="Type your comments..."></textarea>
+                    </div>
+                    <div>
+                        <button type="button" onclick="submitFeedback()" class="btn btn-primary"
+                            id="search-bar-button">Submit</button>
+                    </div>
+                </div>
+            </ul>
             <ul class="list-group list-group-flush" id="feedbackList"></ul>
         </div>
     </div>

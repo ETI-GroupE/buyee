@@ -7,7 +7,7 @@ const fetchProduct = () => {
                 product_id: product_id,
             },
         })
-        .then((response) => {
+        .then(async (response) => {
             console.log(product_id, response.data);
             if (response.data.length === 0 || response.data.length > 1) {
                 window.location.href = "/customer/browse.html";
@@ -34,6 +34,18 @@ const fetchProduct = () => {
             productPrice.innerText = `$${product.product_price.toFixed(2)}`;
             productStock.innerText = `${product.product_stock} pieces left`;
             productDescription.innerText = product.product_description;
+
+            // avatar icon
+            const owner = (
+                await axios.post(
+                    "https://auth-ksbujg5hza-as.a.run.app//api/v1/user/info",
+                    {
+                        userId,
+                    }
+                )
+            ).data;
+            const productOwner = document.getElementById("productOwner");
+            productOwner.innerText = `Sold by ${owner.username}`;
         })
         .catch((error) => console.error(error));
 };
@@ -91,7 +103,7 @@ const fetchFeedback = () => {
                         ${feedback.date}
                     </div>
                     <div>
-                        ${feedback.description}
+                        (${feedback.rating}/5) ${feedback.description}
                     </div>
                 </li>
                 `;
@@ -101,5 +113,43 @@ const fetchFeedback = () => {
         .catch((error) => console.error(error));
 };
 
+const submitFeedback = () => {
+    const user_id = sessionStorage.getItem("userId");
+    const jwt = sessionStorage.getItem("jwt");
+    const email = sessionStorage.getItem("email");
+    const roles = sessionStorage.getItem("roles");
+
+    if ([userId, jwt, email, roles].includes(null)) {
+        window.location.href = "/auth/login.html";
+    }
+
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const { product_id } = Object.fromEntries(urlSearchParams.entries());
+
+    const rating = document.getElementById("feedbackRating").value;
+    const description = document.getElementById("feedbackDescription").value;
+
+    //Value for money but bad service
+    axios
+        .post(
+            `https://buyee-feedback-ksbujg5hza-as.a.run.app/api/v1/feedback`,
+            {
+                description,
+                rating,
+                user_id,
+                product_id,
+            }
+        )
+        .then((response) => {
+            console.log("Finish update");
+            fetchProduct();
+            fetchFeedback();
+            const rating = document.getElementById("feedbackRating");
+            const description = document.getElementById("feedbackDescription");
+            rating.value = "";
+            description.value = "";
+        })
+        .catch((error) => console.error(error));
+};
 fetchProduct();
 fetchFeedback();

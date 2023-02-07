@@ -6,7 +6,7 @@ const roles = sessionStorage.getItem("roles");
 if ([userId, jwt, email, roles].includes(null)) {
     window.location.href = "/auth/login.html";
 }
-console.log(jwt);
+
 axios
     .post(
         "https://auth-ksbujg5hza-as.a.run.app/api/v1/verify/business",
@@ -26,4 +26,5 @@ axios
     })
     .catch((error) => {
         console.error("There was an error!", error.response.status);
+        window.location.href = "/auth/login.html";
     });
