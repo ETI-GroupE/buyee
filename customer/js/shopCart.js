@@ -172,9 +172,7 @@ await fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingC
         console.log(response.status)
         if (response.ok) {
             //add decrease value
-            reduceProduct(ShopCartID)
-            sendDiscountID(ShopCartID)
-            window.location.href = "/shopCart/orderCompletetion.html"
+            afterCheckout()
           return ;
         } 
         else if(response.status == 400) {
@@ -200,7 +198,8 @@ await fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingC
     }
 
 function reduceProduct(ShopCartID){
-  fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCart?ShopCartID='+ ShopCartID)
+  let shopCartId= parseInt(ShopCartID)
+  fetch('https://buyee-shoppingcart-gukqthlh4a-as.a.run.app/api/v1/shoppingCart?ShopCartID='+ shopCartId)
   .then(response => {
     console.log(response.status);
     return response.json();
@@ -218,7 +217,8 @@ function reduceProduct(ShopCartID){
   });
 }
 function sendDiscountID(ShopCartID){
-  fetch('https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discountapply/'+ShopCartID+"/"+sessionStorage.getItem("discountId"), {method: 'POST'})
+  let shopCartId= parseInt(ShopCartID)
+  fetch('https://buyee-discount-qqglc24h2a-as.a.run.app/api/v1/discountapply/'+shopCartId+"/"+sessionStorage.getItem("discountId"), {method: 'POST'})
   .then(response => {
     console.log(response.status);
     return ;
@@ -253,6 +253,13 @@ async function main() {
   console.log("shop"+ ShopCartID);
   await getDiscount(ShopCartID);
   await loadProduct(ShopCartID);
+}
+
+async function afterCheckout() {
+  ShopCartID = sessionStorage.getItem("ShopCartID")
+  await reduceProduct(ShopCartID)
+  await sendDiscountID(ShopCartID)
+  window.location.href = "/shopCart/orderCompletetion.html"
 }
 
 main()
