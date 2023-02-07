@@ -1,4 +1,4 @@
-<h1><p align="center"><img src="https://raw.githubusercontent.com/ETI-GroupE/buyee/main/Buyee.png" width="700" /></p></h1>
+<h1><p align="center"><img src="https://raw.githubusercontent.com/ETI-GroupE/buyee/main/Buyee.png" width="400" /></p></h1>
 
 # ETI Assignment 2
 
