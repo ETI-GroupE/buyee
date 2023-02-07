@@ -87,8 +87,8 @@ Description: Delivery service stores orderstatus & location of order.Mainly used
 Design Consideration: contains database with composite key(orderId,productId), since different products in the order can have different delivery status,locations &times. Interacts with Purchase History to populate the database so status can be updated. 
 
 Endpoints:<br>
-(POST)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status -> post purchasehistory body (all purchasehistory records) into orderstatus database
-(GET)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status/:orderId/:productId ->get order status of product in order
+(POST)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status -> post purchasehistory body (all purchasehistory records) into orderstatus database<br>
+(GET)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status/:orderId/:productId ->get order status of product in order<br>
 (GET)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status -> Get all records from orderstatus. To be populated for Admin UI so admin user can update delivery status<br>
 (PUT)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status/:orderId/:productId/:statusid -> Update product in order 
 
