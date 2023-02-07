@@ -1,3 +1,12 @@
+const roles = sessionStorage.getItem("roles");
+if (roles === "ROLE_ADMIN") {
+    window.location.href = "/delivery/delivery.html";
+} else if (roles === "ROLE_CUSTOMER") {
+    window.location.href = "/customer/browse.html";
+} else if (roles === "ROLE_BUSINESS") {
+    window.location.href = "/business/browse.html";
+}
+
 var successModal = new bootstrap.Modal(document.getElementById("successModal"));
 var errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
 
@@ -32,11 +41,11 @@ $("#submitBtn").click(async function (event) {
 });
 
 $("#login").click(function () {
-	window.location.href = "/auth/login.html";
-	return false;
+    window.location.href = "/auth/login.html";
+    return false;
 });
 
 $(".closeBtn").click(function () {
-	successModal.hide();
-	errorModal.hide();
+    successModal.hide();
+    errorModal.hide();
 });
