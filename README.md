@@ -94,6 +94,10 @@ Endpoints:<br>
 
 ### Architecture Design
 
+![Architecture Design](https://user-images.githubusercontent.com/73012553/217330647-036a08a8-7331-4261-a5f2-89056a7f9e0a.png)
+
+All the services, frontend and databases are hosted on cloud run. For the database section of the diagram, for the purpose of saving money, only 1 service has been configured with the full implementation as the full implementation requires several databases to be spun up which minimally costs $42 per instance.
+
 ## Startup Guide
 
 Set up guides for each service is in its own repository.
