@@ -19,14 +19,16 @@ Name: Brian Lim (10208584A)<br />
 
 This assignment is to develop a program of our choice while apply cloud native concepts. The program must be decomposed into coherent, loosely coupled microservices. You need to consider operational efficiency and ability to recover from failures in order to minimize any impact on business operations.
 
+Link to website: http://34.110.200.44/
+
 ## Repositories
 
 | No  | Service Name             | Purpose                                                                                                      | Link                                                             |
 | :-- | :----------------------- | :----------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------- |
-| 1   | rideshare-cli (current)  | Acts as an interface for users to interact with. It connects to rideshare-api to interact with the database. | [Link](https://github.com/NPLeeWenKang/rideshare-cli)            |
+| 1   | Buyee Frontend (Current Repo)  | Frontend that connects all the services to form a eccomerce application | [Link](https://github.com/ETI-GroupE/buyee)            |
 | 2   | Auth                     | Authentication service for user account creation, logging in, uses JWT                                       | [Link](https://github.com/ETI-GroupE/auth)                       |
-| 3   | rideshare-trip-svc       | Interacts directly with the database for persistent data storage for trips and its assignments. Uses REST.   | [Link](https://github.com/NPLeeWenKang/rideshare-trip-svc)       |
-| 4   | rideshare-ta_process-svc | Service that is in charge of assigning trips to drivers. Trip assignment is abbreviated as ta.               | [Link](https://github.com/NPLeeWenKang/rideshare-ta_process-svc) |
+| 3   | Catalog       | Contains products and product categories. Is the center piece of the application where several service interect with it   | [Link](https://github.com/ETI-GroupE/catalog)       |
+| 4   | Feedback | Allows customers to rate and submit feedback for any product               | [Link](https://github.com/ETI-GroupE/feedback) |
 | 5   | rideshare-system-db      | MySQL for persistent data storage.                                                                           | [Link](https://github.com/NPLeeWenKang/rideshare-system-db)      |
 | 6   | rideshare-ui (bonus)     | For the bonus marks, this service serves a website built using React.                                        | [Link](https://github.com/NPLeeWenKang/rideshare-ui)             |
 | 7   | Purchase History         | Allow customers to view all their purchase history and business owners to view their products sold           | [Link](https://github.com/ETI-GroupE/purchase-history)           |
@@ -40,9 +42,11 @@ TODO: para about microservice (insert diagram)
 Description: Auth service allows users to sign up, log in, modify account details and be issued Json Web Tokens (JWTs) to be used for verification by this service. Users have roles and verification endpoints check for both user identity and role permissions.
 
 Endpoints:
+
 ![image](https://user-images.githubusercontent.com/73124349/217296810-8a3ce7c0-6326-4019-911f-92723b7119ec.png)
 
 Database Design:
+
 ![image](https://user-images.githubusercontent.com/73124349/217296886-091916e8-54a4-40b3-92b2-9d18524b06f6.png)
 
 Design Considerations: Opted for design pattern where issuing of JWT and verification of JWT is in single service for simplicity. Realised that writing middleware for multiple languages (js, go, python) for JWT verification would not make it in the time scope that we have.
