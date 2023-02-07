@@ -195,6 +195,9 @@ const addItem =  () => {
       })
       .then((response)=>{
         console.log(response.status)
+        if (response.status == 202){
+            window.location.href = "/shopCart/shopcart.html";
+        }  
       })
 }
   
