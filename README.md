@@ -5,7 +5,7 @@
 Class: P03<br />
 
 Name: Lee Wen Kang (10203100B)<br />
-Name: Chua Dong EN (10202623A)<br />
+Name: Chua Dong En (10202623A)<br />
 Name: Lee Wen Kang (10203100B)<br />
 Name: Lee Wen Kang (10203100B)<br />
 Name: Brian Lim (10208584A)<br />
@@ -36,7 +36,7 @@ TODO: This assignment is to implement a ride-share platform using a microservice
 TODO: para about microservice (insert diagram)
 
 ### Authentication (Dong En)
-Description: Auth service allows users to sign up, log in, modify account details and be issued Json Web Tokens (JWTs) to be used for verification by this service.
+Description: Auth service allows users to sign up, log in, modify account details and be issued Json Web Tokens (JWTs) to be used for verification by this service. Users have roles and verification endpoints check for both user identity and role permissions.
 
 Endpoints:
 ![image](https://user-images.githubusercontent.com/73124349/217296810-8a3ce7c0-6326-4019-911f-92723b7119ec.png)
