@@ -89,7 +89,7 @@ Design Consideration: contains database with composite key(orderId,productId), s
 Endpoints:<br>
 (POST)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status -> post purchasehistory body (all purchasehistory records) into orderstatus database
 (GET)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status/:orderId/:productId ->get order status of product in order
-(GET)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status -> Get all records from orderstatus. To be populated for Admin UI so admin user can update delivery status
+(GET)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status -> Get all records from orderstatus. To be populated for Admin UI so admin user can update delivery status<br>
 (PUT)https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status/:orderId/:productId/:statusid -> Update product in order 
 
 ### Architecture Design
