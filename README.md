@@ -35,7 +35,18 @@ Link to website: http://34.110.200.44/
 
 ## Solution Design
 
-TODO: para about microservice (insert diagram)
+![Solution Design](https://user-images.githubusercontent.com/73012553/217334579-9e3122ea-d8da-42f8-a174-9f5c8864705d.png)
+
+For this assignment, the team used a microservice architecture.
+
+1. Authentication (By Dong En)
+2. Catalog (By Wen Kang)
+3. Feedback (By Wen Kang)
+4. Shopping Cart (By Lincoln)
+5. Checkout (By Lincoln)
+6. Purchase History (By Brian)
+7. Delivery (By Herman)
+8. Discount (By Herman)
 
 ### Authentication (Dong En)
 
@@ -92,6 +103,10 @@ Endpoints made:
 Design Consideration: To work with Shopping Cart and Delivery & Discount Endpoints
 
 ### Architecture Design
+
+![Architecture Design](https://user-images.githubusercontent.com/73012553/217333837-f52cf7a9-c178-4720-ad78-f351cfa1e4b6.png)
+
+All the services, frontend and database used for this assignment is hosted on GCP. For our frontend and product image bucket, and backend service, we have implemented as seen in the diagram. However, for the database, only 1 service has been configureed with the full implementation plan above. This is because the cost of hosting tha database design above requires several databases to be spun up where each instance costs around $42 per month.
 
 ## Startup Guide
 
