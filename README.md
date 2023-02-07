@@ -5,7 +5,7 @@
 Class: P03<br />
 
 Name: Lee Wen Kang (10203100B)<br />
-Name: Lee Wen Kang (10203100B)<br />
+Name: Chua Dong EN (10202623A)<br />
 Name: Lee Wen Kang (10203100B)<br />
 Name: Lee Wen Kang (10203100B)<br />
 Name: Brian Lim (10208584A)<br />
@@ -24,7 +24,7 @@ TODO: This assignment is to implement a ride-share platform using a microservice
 | No  | Service Name             | Purpose                                                                                                      | Link                                                             |
 | :-- | :----------------------- | :----------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------- |
 | 1   | rideshare-cli (current)  | Acts as an interface for users to interact with. It connects to rideshare-api to interact with the database. | [Link](https://github.com/NPLeeWenKang/rideshare-cli)            |
-| 2   | rideshare-account-svc    | Interacts directly with the database for persistent data storage for passengers and drivers. Uses REST.      | [Link](https://github.com/NPLeeWenKang/rideshare-account-svc)    |
+| 2   | Auth    | Authentication service for user account creation, logging in, uses JWT      | [Link](https://github.com/ETI-GroupE/auth)    |
 | 3   | rideshare-trip-svc       | Interacts directly with the database for persistent data storage for trips and its assignments. Uses REST.   | [Link](https://github.com/NPLeeWenKang/rideshare-trip-svc)       |
 | 4   | rideshare-ta_process-svc | Service that is in charge of assigning trips to drivers. Trip assignment is abbreviated as ta.               | [Link](https://github.com/NPLeeWenKang/rideshare-ta_process-svc) |
 | 5   | rideshare-system-db      | MySQL for persistent data storage.                                                                           | [Link](https://github.com/NPLeeWenKang/rideshare-system-db)      |
@@ -36,12 +36,15 @@ TODO: This assignment is to implement a ride-share platform using a microservice
 TODO: para about microservice (insert diagram)
 
 ### Authentication (Dong En)
+Description: Auth service allows users to sign up, log in, modify account details and be issued Json Web Tokens (JWTs) to be used for verification by this service.
 
-possible talking points
+Endpoints:
+![image](https://user-images.githubusercontent.com/73124349/217296810-8a3ce7c0-6326-4019-911f-92723b7119ec.png)
 
-1. description
-2. endpoints made
-3. Design consideration
+Database Design:
+![image](https://user-images.githubusercontent.com/73124349/217296886-091916e8-54a4-40b3-92b2-9d18524b06f6.png)
+
+Design Considerations: Opted for design pattern where issuing of JWT and verification of JWT is in single service for simplicity. Realised that writing middleware for multiple languages (js, go, python) for JWT verification would not make it in the time scope that we have.
 
 ### Catalog (Wen Kang)
 
