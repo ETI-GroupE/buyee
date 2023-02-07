@@ -1,11 +1,12 @@
 
 window.onload = function() {
     
+    
     function getAllorders(){
         const fetchOrders = () => {
             axios.get("https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/allpurchase")
             .then((response) => {
-              console.log(response);
+              //console.log(response);
               const orders = response.data;
           
               return Promise.all(orders.map(order => {
@@ -26,13 +27,19 @@ window.onload = function() {
                     </select>
                   </div>
                 </div>`;
+                
                 content.innerHTML += appendContent;
-                changeDeliveryStatus();  
+                 
                 return axios.get(`https://buyee-catalog-ksbujg5hza-as.a.run.app/api/v1/products?product_id=${order.product_id}`);
               }));
             })
             .then((responses) => {
-              console.log(responses);
+              //console.log(responses);
+              getSelectValue();
+              console.log(document.querySelectorAll("select")[0].statusId)
+              
+              changeDeliveryStatus(); 
+             
               for (var i = 0; i < responses.length; i++){
                 var productDt = responses[i].data[0];
                 document.getElementsByClassName("prodnm")[i].innerHTML = productDt.product_name;
@@ -52,16 +59,18 @@ window.onload = function() {
 
     getAllorders();
     
+    
 };
 
 addPurchHist();
 
+
 function addPurchHist(){
     axios.get("https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/allpurchase")
             .then((response) => {
-                console.log(response,typeof response);
+              //  console.log(response,typeof response);
                const orders = response.data;
-               console.log(typeof JSON.stringify(orders));
+              // console.log(typeof JSON.stringify(orders));
                return axios.post("https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status",orders);
                
 
@@ -69,7 +78,7 @@ function addPurchHist(){
             })
             .then((response)=>{
 
-                console.log(response);
+                //console.log(response);
 
             })
             .catch((error) => {
@@ -100,8 +109,19 @@ function addPurchHist(){
 }*/
     
 function getSelectValue(){
-  
-
+    axios.get("https://buyee-delivery-qqglc24h2a-as.a.run.app/api/v1/status")
+    .then((response) => {
+        var selects = document.querySelectorAll("select");
+        for (var i = 0; i < selects.length; i++) {
+            selectedOption = response.data[i].statusId;
+            console.log(response.data[i].statusId);
+            selects[i].value= selectedOption;
+           
+        }
+    })
+    .catch((error) => {
+        console.error(error);
+      });   
 
 }
 
