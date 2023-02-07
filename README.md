@@ -7,7 +7,7 @@ Class: P01<br />
 Name: Lee Wen Kang (10203100B)<br />
 Name: Chua Dong En (10202623A)<br />
 Name: Lee Wen Kang (10203100B)<br />
-Name: Lee Wen Kang (10203100B)<br />
+Name: Lincoln Chia (10205479E)<br />
 Name: Brian Lim (10208584A)<br />
 
 ## Contents
@@ -30,6 +30,7 @@ This assignment is to develop a program of our choice while apply cloud native c
 | 5   | rideshare-system-db      | MySQL for persistent data storage.                                                                           | [Link](https://github.com/NPLeeWenKang/rideshare-system-db)      |
 | 6   | rideshare-ui (bonus)     | For the bonus marks, this service serves a website built using React.                                        | [Link](https://github.com/NPLeeWenKang/rideshare-ui)             |
 | 7   | Purchase History         | Allow customers to view all their purchase history and business owners to view their products sold           | [Link](https://github.com/ETI-GroupE/purchase-history)           |
+| 7   | Shopping Cart & checkout | Allow customers to view all their purchase history and business owners to view their products sold           | [Link](https://github.com/ETI-GroupE/ShoppingCart)               |
 
 ## Solution Design
 
@@ -62,6 +63,10 @@ Endpoints made:
 3). api/v1/viewAllBusinessPurchase URL: https://buyee-purchase-history-1-nr7eovel5q-as.a.run.app/api/v1/api/v1/viewAllBusinessPurchase ("GET")
 
 Design Consideration: To work with Shopping Cart and Delivery & Discount Endpoints
+
+### Shopping Cart & checkout (Lincoln)
+
+Design Considerations: Left calculation of final amount to be done in the backend before sending it to the checkout database. The shopping cart user database will have a many to one relationship between user to shopping cart respectively. This is so that users can have multiple shopping carts which can be turned into orders in the product history page. The shopping cart will hold just the product ID and will query for the information in order to reduce redundent data. Finally checkout will contain the nessasary information needed for users to checkout of the account such as devliery address and the credit card details.
 
 ### Architecture Design
 
